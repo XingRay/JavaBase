@@ -8,6 +8,10 @@
     <artifactId>JavaBase</artifactId>
     <version>0.0.1</version>
 
+    <properties>
+        <java.version>14</java.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
