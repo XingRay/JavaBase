@@ -1,41 +1,42 @@
 package com.xingray.javabase.result;
 
-public class Result<T> {
+public class Result3<T, T1, T2> {
 
     private T data;
+    private T1 data1;
+    private T2 data2;
 
     private boolean success;
     private String message;
     private int code;
     private Exception exception;
 
-    public static final Result<Object> OK = new Result<>(true);
-    public static final Result<Object> FAIL = new Result<>(false);
+    public static final Result3<Object, Object, Object> OK = new Result3<>(true);
+    public static final Result3<Object, Object, Object> FAIL = new Result3<>(false);
 
-    public static <V> Result<V> success(V v) {
-        return new Result<>(v, true, null, 0, null);
+    public Result3() {
     }
 
-    public Result() {
-    }
-
-    public Result(boolean success) {
-        this(null, success, null, 0, null);
-    }
-
-    public Result(Exception exception) {
-        this(null, false, exception.getMessage(), 0, exception);
-    }
-
-    public Result(String message) {
-        this(null, false, message, 0, null);
-    }
-
-    public Result(T data, boolean success, String message, int code, Exception exception) {
-        this.data = data;
+    public Result3(boolean success) {
         this.success = success;
-        this.message = message;
+    }
+
+    public Result3(T data, T1 data1, T2 data2) {
+        this.success = true;
+        this.data = data;
+        this.data1 = data1;
+        this.data2 = data2;
+    }
+
+    public Result3(Exception exception) {
+        this.success = false;
         this.exception = exception;
+        this.message = exception.getMessage();
+    }
+
+    public Result3(String message) {
+        this.success = false;
+        this.message = message;
     }
 
     public T getData() {
@@ -44,6 +45,22 @@ public class Result<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public T1 getData1() {
+        return data1;
+    }
+
+    public void setData1(T1 data1) {
+        this.data1 = data1;
+    }
+
+    public T2 getData2() {
+        return data2;
+    }
+
+    public void setData2(T2 data2) {
+        this.data2 = data2;
     }
 
     public boolean isSuccess() {
@@ -80,8 +97,10 @@ public class Result<T> {
 
     @Override
     public String toString() {
-        return "Result{" +
-                "date=" + data +
+        return "Result3{" +
+                "data1=" + data +
+                ", data2=" + data1 +
+                ", data3=" + data2 +
                 ", success=" + success +
                 ", message='" + message + '\'' +
                 ", code=" + code +

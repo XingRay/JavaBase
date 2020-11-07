@@ -1,41 +1,40 @@
 package com.xingray.javabase.result;
 
-public class Result<T> {
+public class Result2<T, T1> {
 
     private T data;
+    private T1 data1;
 
     private boolean success;
     private String message;
     private int code;
     private Exception exception;
 
-    public static final Result<Object> OK = new Result<>(true);
-    public static final Result<Object> FAIL = new Result<>(false);
+    public static final Result2<Object, Object> OK = new Result2<>(true);
+    public static final Result2<Object, Object> FAIL = new Result2<>(false);
 
-    public static <V> Result<V> success(V v) {
-        return new Result<>(v, true, null, 0, null);
+    public Result2() {
     }
 
-    public Result() {
-    }
-
-    public Result(boolean success) {
-        this(null, success, null, 0, null);
-    }
-
-    public Result(Exception exception) {
-        this(null, false, exception.getMessage(), 0, exception);
-    }
-
-    public Result(String message) {
-        this(null, false, message, 0, null);
-    }
-
-    public Result(T data, boolean success, String message, int code, Exception exception) {
-        this.data = data;
+    public Result2(boolean success) {
         this.success = success;
-        this.message = message;
+    }
+
+    public Result2(T data, T1 data1) {
+        this.success = true;
+        this.data = data;
+        this.data1 = data1;
+    }
+
+    public Result2(Exception exception) {
+        this.success = false;
         this.exception = exception;
+        this.message = exception.getMessage();
+    }
+
+    public Result2(String message) {
+        this.success = false;
+        this.message = message;
     }
 
     public T getData() {
@@ -44,6 +43,14 @@ public class Result<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public T1 getData1() {
+        return data1;
+    }
+
+    public void setData1(T1 data1) {
+        this.data1 = data1;
     }
 
     public boolean isSuccess() {
@@ -80,8 +87,9 @@ public class Result<T> {
 
     @Override
     public String toString() {
-        return "Result{" +
-                "date=" + data +
+        return "Result2{" +
+                "data1=" + data +
+                ", data2=" + data1 +
                 ", success=" + success +
                 ", message='" + message + '\'' +
                 ", code=" + code +
