@@ -3,7 +3,7 @@ package com.xingray.javabase.interfaces;
 /**
  * @author : leixing
  * <p>
- * description : Matcher
+ * description : Filter
  */
 public interface Filter<T> {
 
