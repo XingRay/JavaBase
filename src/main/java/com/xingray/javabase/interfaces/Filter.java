@@ -10,5 +10,5 @@ public interface Filter<T> {
     /**
      * 是否保留
      */
-    boolean isReserve(T t);
+    boolean keep(T t);
 }
