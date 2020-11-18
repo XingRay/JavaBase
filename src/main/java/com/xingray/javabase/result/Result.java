@@ -16,6 +16,10 @@ public class Result<T> {
         return new Result<>(v, true, null, 0, null);
     }
 
+    public static <V> Result<V> failure() {
+        return new Result<>(false);
+    }
+
     public Result() {
     }
 
