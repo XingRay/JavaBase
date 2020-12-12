@@ -12,12 +12,32 @@ public class Result<T> {
     public static final Result<Object> OK = new Result<>(true);
     public static final Result<Object> FAIL = new Result<>(false);
 
+    public static <V> Result<V> success() {
+        return new Result<>(true);
+    }
+
     public static <V> Result<V> success(V v) {
         return new Result<>(v, true, null, 0, null);
     }
 
     public static <V> Result<V> failure() {
         return new Result<>(false);
+    }
+
+    public static <V> Result<V> failure(String message) {
+        return new Result<>(message);
+    }
+
+    public static <V> Result<V> failure(int code, String message) {
+        return new Result<>(code, message);
+    }
+
+    public static <V> Result<V> failure(int code) {
+        return new Result<>(null, false, null, code, null);
+    }
+
+    public static <V> Result<V> failure(Exception e) {
+        return new Result<>(null, false, e.getMessage(), 0, e);
     }
 
     public Result() {
@@ -35,11 +55,16 @@ public class Result<T> {
         this(null, false, message, 0, null);
     }
 
+    public Result(int code, String message) {
+        this(null, false, message, code, null);
+    }
+
     public Result(T data, boolean success, String message, int code, Exception exception) {
         this.data = data;
         this.success = success;
         this.message = message;
         this.exception = exception;
+        this.code = code;
     }
 
     public T getData() {
