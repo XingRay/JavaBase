@@ -110,7 +110,7 @@ public class Result<T> {
     @Override
     public String toString() {
         return "Result{" +
-                "date=" + data +
+                "data=" + data +
                 ", success=" + success +
                 ", message='" + message + '\'' +
                 ", code=" + code +
